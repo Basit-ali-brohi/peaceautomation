@@ -8,14 +8,9 @@ FROM php:8.2-apache
 
 RUN docker-php-ext-install pdo pdo_mysql
 
-# The base image already loads the MPM that mod_php needs from its own
-# config, while Debian's mods-enabled still carries one too — two
-# LoadModule lines, and Apache refuses to start ("AH00534: More than one
-# MPM loaded"). Dropping the mods-enabled symlinks leaves exactly one.
-RUN rm -f /etc/apache2/mods-enabled/mpm_*.load /etc/apache2/mods-enabled/mpm_*.conf \
- && a2enmod rewrite headers expires deflate \
- && echo "--- LoadModule mpm lines after cleanup ---" \
- && (grep -rn "LoadModule .*mpm" /etc/apache2/ 2>/dev/null || echo "none in /etc/apache2")
+# Modules .htaccess relies on. Which MPM is loaded is settled by the
+# entrypoint at boot, so nothing here touches it.
+RUN a2enmod rewrite headers expires deflate
 
 # Production PHP defaults: errors to the log, never to the visitor.
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
