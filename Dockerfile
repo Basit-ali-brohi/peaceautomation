@@ -7,8 +7,13 @@
 FROM php:8.2-apache
 
 # PDO MySQL for the app, plus the Apache modules .htaccess relies on.
+#
+# mod_php only runs under prefork, and Apache refuses to start if a second
+# MPM is also enabled ("More than one MPM loaded"), so the others are
+# switched off explicitly before the modules are enabled.
 RUN docker-php-ext-install pdo pdo_mysql \
- && a2enmod rewrite headers expires deflate
+ && a2dismod mpm_event mpm_worker 2>/dev/null || true
+RUN a2enmod mpm_prefork rewrite headers expires deflate
 
 # Production PHP defaults: errors to the log, never to the visitor.
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
