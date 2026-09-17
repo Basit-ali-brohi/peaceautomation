@@ -8,15 +8,14 @@ FROM php:8.2-apache
 
 RUN docker-php-ext-install pdo pdo_mysql
 
-# mod_php only runs under prefork, and Apache refuses to start when a second
-# MPM is loaded ("AH00534: More than one MPM loaded"). a2dismod is not
-# reliable here, so every MPM symlink is removed and prefork is linked back
-# by hand. The final ls prints the result into the build log.
+# The base image already loads the MPM that mod_php needs from its own
+# config, while Debian's mods-enabled still carries one too — two
+# LoadModule lines, and Apache refuses to start ("AH00534: More than one
+# MPM loaded"). Dropping the mods-enabled symlinks leaves exactly one.
 RUN rm -f /etc/apache2/mods-enabled/mpm_*.load /etc/apache2/mods-enabled/mpm_*.conf \
- && ln -s /etc/apache2/mods-available/mpm_prefork.load /etc/apache2/mods-enabled/mpm_prefork.load \
- && ln -s /etc/apache2/mods-available/mpm_prefork.conf /etc/apache2/mods-enabled/mpm_prefork.conf \
  && a2enmod rewrite headers expires deflate \
- && echo "MPMs enabled:" && ls -1 /etc/apache2/mods-enabled/ | grep mpm
+ && echo "--- LoadModule mpm lines after cleanup ---" \
+ && (grep -rn "LoadModule .*mpm" /etc/apache2/ 2>/dev/null || echo "none in /etc/apache2")
 
 # Production PHP defaults: errors to the log, never to the visitor.
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
