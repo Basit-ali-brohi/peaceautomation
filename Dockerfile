@@ -6,14 +6,17 @@
 
 FROM php:8.2-apache
 
-# PDO MySQL for the app, plus the Apache modules .htaccess relies on.
-#
-# mod_php only runs under prefork, and Apache refuses to start if a second
-# MPM is also enabled ("More than one MPM loaded"), so the others are
-# switched off explicitly before the modules are enabled.
-RUN docker-php-ext-install pdo pdo_mysql \
- && a2dismod mpm_event mpm_worker 2>/dev/null || true
-RUN a2enmod mpm_prefork rewrite headers expires deflate
+RUN docker-php-ext-install pdo pdo_mysql
+
+# mod_php only runs under prefork, and Apache refuses to start when a second
+# MPM is loaded ("AH00534: More than one MPM loaded"). a2dismod is not
+# reliable here, so every MPM symlink is removed and prefork is linked back
+# by hand. The final ls prints the result into the build log.
+RUN rm -f /etc/apache2/mods-enabled/mpm_*.load /etc/apache2/mods-enabled/mpm_*.conf \
+ && ln -s /etc/apache2/mods-available/mpm_prefork.load /etc/apache2/mods-enabled/mpm_prefork.load \
+ && ln -s /etc/apache2/mods-available/mpm_prefork.conf /etc/apache2/mods-enabled/mpm_prefork.conf \
+ && a2enmod rewrite headers expires deflate \
+ && echo "MPMs enabled:" && ls -1 /etc/apache2/mods-enabled/ | grep mpm
 
 # Production PHP defaults: errors to the log, never to the visitor.
 RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"

@@ -10,5 +10,6 @@ sed -i "s/<VirtualHost \*:80>/<VirtualHost *:${PORT}>/" /etc/apache2/sites-avail
 echo "[boot] applying database schema…"
 php /var/www/html/config/migrate.php || echo "[boot] schema step failed — the site will still start"
 
+echo "[boot] MPM in use: $(apache2ctl -M 2>/dev/null | grep -i mpm || echo unknown)"
 echo "[boot] Apache listening on ${PORT}"
 exec apache2-foreground
