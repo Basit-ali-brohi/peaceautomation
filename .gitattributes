@@ -1,0 +1,23 @@
+# Normalise line endings so files written on Windows still run on Linux.
+* text=auto
+
+# These are executed by the container — they must have LF endings.
+*.sh        text eol=lf
+Dockerfile  text eol=lf
+docker/*    text eol=lf
+*.php       text eol=lf
+*.css       text eol=lf
+*.js        text eol=lf
+*.sql       text eol=lf
+
+# Binaries git must never touch.
+*.png  binary
+*.jpg  binary
+*.jpeg binary
+*.webp binary
+*.gif  binary
+*.ico  binary
+*.ttf  binary
+*.woff binary
+*.woff2 binary
+*.pdf  binary

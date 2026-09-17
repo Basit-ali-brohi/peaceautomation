@@ -1,6 +1,6 @@
 # Environment credentials — copy the .sample file and fill these in per server
 includes/config.php
-config/db.php
+config/db.local.php
 
 # Runtime data written by the site
 storage/*

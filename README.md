@@ -57,11 +57,12 @@ samples and fill them in:
 
 ```bash
 cp includes/config.sample.php includes/config.php
-cp config/db.sample.php config/db.php
+cp config/db.local.sample.php config/db.local.php
 ```
 
 `includes/config.php` holds the phone number, email, address, social links, SMTP details and
-bank transfer details shown at checkout. `config/db.php` holds the database credentials.
+bank transfer details shown at checkout. `config/db.local.php` holds the database
+credentials — on a container host, `DB_*` environment variables replace it.
 
 **2. Database**
 
@@ -113,6 +114,25 @@ sitemap alike.
 Product prices are whole rupees in the `products` array. The price always comes from that
 file at render time, never from the session, so a stale cart can never carry an old price
 into an order.
+
+---
+
+## Deployment
+
+The site needs a host that runs PHP — a static host such as Netlify or GitHub Pages cannot
+serve it. A `Dockerfile` is included, so any container host builds it straight from this
+repository:
+
+```bash
+docker compose up --build     # local test on http://localhost:8080
+```
+
+On a container host the database comes from environment variables (`DB_HOST`, `DB_PORT`,
+`DB_NAME`, `DB_USER`, `DB_PASS`, or a single `MYSQL_URL`), and the entrypoint applies
+`sql/schema.sql` on first boot.
+
+Step-by-step instructions for Railway, Render and cPanel shared hosting are in
+[DEPLOY.md](DEPLOY.md).
 
 ---
 

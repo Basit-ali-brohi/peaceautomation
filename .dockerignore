@@ -1,0 +1,9 @@
+.git
+.gitignore
+.trash-tailwind-partials
+docker-compose.yml
+DEPLOY.md
+storage/*.log
+storage/*.csv
+*.md
+!README.md
