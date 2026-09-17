@@ -1,0 +1,48 @@
+/* =========================================================
+   ABOUT PAGE — AB6 PROCESS (MARQUEE & STEPS)
+   ========================================================= */
+.ab-process-sec { background: var(--navy-900); padding: 160px 0 120px; position: relative; overflow: hidden; color: #fff; margin-top: 60px; clip-path: inset(0 0 0 0); }
+.ab-marquee-wrapper { position: absolute; top: 30px; left: -10%; width: 120%; overflow: hidden; display: flex; z-index: 1; }
+.ab-mq-1 { transform: translateY(10px) rotate(-3deg); background: var(--lime); color: var(--ink); z-index: 2; }
+.ab-mq-2 { transform: translateY(40px) rotate(2deg); background: var(--blue-600); color: #fff; z-index: 1; }
+.ab-mq-inner { display: flex; gap: 40px; padding: 16px 0; animation: abTicker 30s linear infinite; font-size: 1.25rem; font-weight: 800; text-transform: uppercase; }
+.ab-mq-2 .ab-mq-inner { animation-direction: reverse; animation-duration: 35s; }
+.ab-mq-inner span { white-space: nowrap; }
+@keyframes abTicker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+.ab-process-head { text-align: center; position: relative; z-index: 3; margin-top: 40px; }
+.ab-process-head h2 { font-size: clamp(2.5rem, 4vw, 3.8rem) !important; color: #fff !important; margin: 24px auto; max-width: 25ch; line-height: 1.1 !important; font-weight: 800 !important; }
+
+.ab-process-images { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin: 60px 0; position: relative; z-index: 3; }
+.ab-process-img { width: 100%; aspect-ratio: 1.6/1; border-radius: 200px; overflow: hidden; }
+.ab-process-img img { width: 100%; height: 100%; object-fit: cover; }
+
+.ab-process-text { text-align: center; max-width: 800px; margin: 0 auto 80px; font-size: clamp(1.2rem, 2vw, 1.6rem); line-height: 1.5; color: #fff; position: relative; z-index: 3; font-weight: 600; }
+
+.ab-process-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; position: relative; z-index: 3; text-align: left; }
+.ab-process-steps::before { content: ''; position: absolute; top: 24px; left: 0; right: 0; height: 1px; background: rgba(255,255,255,0.15); z-index: 1; }
+.ab-step { position: relative; z-index: 2; }
+.ab-step-num { width: 48px; height: 48px; border-radius: 50%; background: #fff; color: var(--ink); display: grid; place-items: center; font-size: 1.1rem; font-weight: 800; margin-bottom: 24px; }
+.ab-step:nth-child(3) .ab-step-num { background: var(--lime); }
+.ab-step h3 { font-size: 1.5rem; color: #fff; margin-bottom: 12px; font-weight: 700; }
+.ab-step p { color: rgba(255,255,255,0.7); line-height: 1.6; font-size: 1.05rem; }
+
+/* =========================================================
+   ABOUT PAGE — AB7 TESTIMONIALS
+   ========================================================= */
+.ab-testi-sec { padding: 120px 0; background: #fff; text-align: center; }
+.ab-testi-sec h2 { font-size: clamp(2.5rem, 4vw, 3.8rem) !important; color: var(--ink) !important; margin: 20px auto 60px; max-width: 25ch; line-height: 1.1 !important; font-weight: 800 !important; }
+.ab-testi-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; text-align: center; }
+.ab-testi-card { background: #fff; border: 1px solid rgba(0,0,0,0.06); border-radius: var(--r-card); padding: 40px; box-shadow: 0 10px 40px rgba(0,0,0,0.03); position: relative; margin-bottom: 40px; }
+.ab-testi-stars { font-size: 1.1rem; display: flex; gap: 6px; align-items: center; justify-content: center; margin-bottom: 24px; font-weight: 800; color: var(--ink); }
+.ab-testi-stars svg { width: 20px; height: 20px; color: #FFA800; fill: currentColor; }
+.ab-testi-card p { color: var(--body); font-size: 1.05rem; line-height: 1.7; }
+.ab-testi-avatar { position: absolute; bottom: -32px; left: 50%; transform: translateX(-50%); width: 64px; height: 64px; border-radius: 50%; border: 4px solid #fff; overflow: hidden; background: #eee; }
+.ab-testi-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+@media (max-width: 900px) {
+  .ab-process-images { grid-template-columns: repeat(2, 1fr); }
+  .ab-process-steps { grid-template-columns: 1fr; }
+  .ab-process-steps::before { display: none; }
+  .ab-testi-grid { grid-template-columns: 1fr; }
+}

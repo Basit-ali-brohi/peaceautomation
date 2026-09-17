@@ -1,0 +1,17 @@
+# Environment credentials — copy the .sample file and fill these in per server
+includes/config.php
+config/db.php
+
+# Runtime data written by the site
+storage/*
+!storage/.gitkeep
+
+# Editor / OS noise
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+*.log
+
+# Superseded Tailwind partials, kept locally for reference only
+.trash-tailwind-partials/

@@ -1,0 +1,15 @@
+/* =========================================================
+   ABOUT PAGE — PROCESS & TESTIMONIALS FIXES
+   ========================================================= */
+/* Fix step icon hover */
+.ab-step:nth-child(3) .ab-step-num { background: #fff !important; }
+.ab-step-num { transition: background 0.3s var(--ease), color 0.3s var(--ease); cursor: default; }
+.ab-step:hover .ab-step-num { background: var(--lime) !important; color: var(--ink); }
+
+/* Testimonials Slider Overrides */
+.ab-testi-swiper { padding-bottom: 60px !important; }
+.ab-testi-swiper .swiper-pagination { bottom: 0 !important; }
+.ab-testi-swiper .swiper-pagination-bullet { background: var(--navy-900); opacity: 0.2; }
+.ab-testi-swiper .swiper-pagination-bullet-active { background: var(--lime); opacity: 1; }
+.ab-testi-card { margin-bottom: 0; height: 100%; display: flex; flex-direction: column; justify-content: space-between; }
+.swiper-slide { height: auto; }

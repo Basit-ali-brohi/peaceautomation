@@ -1,0 +1,14 @@
+/* =========================================================
+   ABOUT PAGE — AB2 INTRO (GRID FIX)
+   ========================================================= */
+.ab-intro-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  align-items: stretch;
+}
+@media (max-width: 992px) {
+  .ab-intro-grid {
+    grid-template-columns: 1fr;
+  }
+}

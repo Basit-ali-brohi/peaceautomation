@@ -1,0 +1,46 @@
+/* =========================================================
+   ABOUT PAGE — AB3 STATS (REVISED)
+   ========================================================= */
+.ab-stats-sec{ padding:0 0 clamp(80px, 8vw, 120px); }
+.ab-stats-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:40px; text-align:center; }
+.ab-stat{ display:flex; flex-direction:column; align-items:center; }
+.ab-stat-circle{
+  width:160px; height:160px; border-radius:50%; margin:0 auto 24px;
+  border:8px solid #1A56DB; 
+  border-bottom-color:transparent;
+  transform:rotate(45deg);
+  display:flex; place-items:center; justify-content:center;
+}
+.ab-stat-circle-inner{
+  transform:rotate(-45deg); /* un-rotate the text */
+}
+.ab-stat-circle h3{ font-size:2.5rem; font-weight:800; color:var(--ink); margin:0; }
+.ab-stat-label{ font-weight:800; color:var(--ink); font-size:1.25rem; margin-bottom:12px; display:block; }
+.ab-stat-desc{ color:var(--body); font-size:1.05rem; line-height:1.6; max-width:220px; margin:0 auto; }
+@media(max-width:900px){ .ab-stats-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:540px){ .ab-stats-grid{ grid-template-columns:1fr; } }
+
+/* =========================================================
+   ABOUT PAGE — AB5 TEAM (REVISED)
+   ========================================================= */
+.ab-team-sec{ padding:clamp(80px, 8vw, 120px) 0; }
+.ab-team-top{ display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:80px; gap:40px; flex-wrap:wrap; }
+.ab-team-heading{
+  font-size:clamp(3rem, 5vw, 4.2rem) !important;
+  font-weight:800 !important;
+  max-width:14ch;
+  line-height:1.05 !important;
+  color:var(--ink) !important;
+  margin:12px 0 0 0 !important;
+}
+.ab-team-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:30px; text-align:center; }
+.ab-team-photo{
+  border-radius:50%; overflow:hidden; aspect-ratio:1/1; margin-bottom:24px;
+  background:var(--light);
+}
+.ab-team-photo img{ width:100%; height:100%; object-fit:cover; transition:transform .4s var(--ease); }
+.ab-team-member:hover .ab-team-photo img{ transform:scale(1.05); }
+.ab-team-name{ font-size:1.3rem; font-weight:800; color:var(--ink); margin-bottom:6px; }
+.ab-team-role{ font-size:1rem; color:var(--body-dim); }
+@media(max-width:1024px){ .ab-team-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:540px){ .ab-team-grid{ grid-template-columns:1fr; } }

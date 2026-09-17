@@ -1,0 +1,54 @@
+/* =========================================================
+   ABOUT PAGE — TEAM PLUS & STATS CIRCLE FIX
+   ========================================================= */
+/* Team Plus Button */
+.ab-team-plus {
+  display: block;
+  width: 36px; height: 36px;
+  border: 1.5px solid rgba(0,0,0,.15);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 34px;
+  font-size: 1.2rem;
+  color: rgba(0,0,0,.3);
+  margin: 16px auto 0;
+  cursor: pointer;
+  transition: all .3s var(--ease);
+}
+.ab-team-plus:hover {
+  background: var(--lime);
+  border-color: var(--lime);
+  color: var(--ink);
+}
+
+/* Stats Circles — Match Reference: Solid blue filled circle with arc ring */
+.ab-stat-circle {
+  width: 120px !important;
+  height: 120px !important;
+  border-radius: 50% !important;
+  border: 4px solid var(--blue-600) !important;
+  border-bottom-color: transparent !important;
+  transform: rotate(45deg) !important;
+  display: grid !important;
+  place-items: center !important;
+  margin: 0 0 24px !important;
+  background: transparent !important;
+}
+.ab-stat-circle-inner {
+  width: 90px !important;
+  height: 90px !important;
+  border-radius: 50% !important;
+  background: var(--blue-600) !important;
+  display: grid !important;
+  place-items: center !important;
+  transform: rotate(-45deg) !important;
+}
+.ab-stat-circle-inner h3 {
+  color: #fff !important;
+  font-size: 1.6rem !important;
+  font-weight: 800 !important;
+  margin: 0 !important;
+}
+
+/* Team section needs extra bottom padding for marquee overlap */
+.ab-team-sec { padding-bottom: 100px !important; }

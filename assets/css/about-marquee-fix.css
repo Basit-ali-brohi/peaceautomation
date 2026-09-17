@@ -1,0 +1,5 @@
+/* FIX: Marquee stays inside dark section */
+.ab-process-sec { clip-path: inset(0 0 0 0) !important; }
+.ab-marquee-wrapper { top: 30px !important; }
+.ab-mq-1 { transform: translateY(10px) rotate(-3deg) !important; }
+.ab-mq-2 { transform: translateY(40px) rotate(2deg) !important; }
